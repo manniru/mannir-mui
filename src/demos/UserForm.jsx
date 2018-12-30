@@ -7,10 +7,10 @@ import Checkbox from '@material-ui/core/Checkbox';
 import Paper from '@material-ui/core/Paper';
 import Button from "@material-ui/core/Button";
 
-function PersonForm() {
+function UserForm() {
   return (
     <div>
-    <Paper style={{margin: 5, padding: 10, width: 500}} elevation={3}>
+    <Paper style={{margin: 5, padding: 10}} elevation={3}>
     <React.Fragment>
       <Typography variant="h6" gutterBottom>
         Guest Form
@@ -107,4 +107,4 @@ function PersonForm() {
   );
 }
 
-export default PersonForm;
+export default UserForm;

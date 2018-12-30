@@ -63,7 +63,7 @@ class Form1 extends React.Component {
   render() {
     return (
       <div>
-          <Paper style={{margin: 10, padding: 10, width: 400}} elevation={3}>
+          <Paper style={{margin: 10, padding: 10}} elevation={3}>
           <Typography variant="h5" component="h3">
           User Form
         </Typography>

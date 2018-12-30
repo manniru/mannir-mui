@@ -36,8 +36,9 @@ import Card1 from '../demos/Card1'
 import Form1 from '../demos/Form1'
 import InfoBox from '../components/dashboard/InfoBox'
 import Row1 from '../demos/Row1'
-import PersonForm from '../demos/PersonForm'
+// import PersonForm from '../demos/UserForm'
 import Grid1 from '../demos/Grid1'
+import Grid2 from '../demos/Grid2'
 
 const drawerWidth = 240;
 
@@ -391,16 +392,17 @@ class AppBarDrawer extends React.Component {
             Demo
           </Typography>
 
-          <Grid1 />
+          {/* <Grid1 /> */}
+          <Grid2 />
           {/* <Row1 /> */}
 
           {/* <InfoBox /> */}
-          < PersonForm/>
+          {/* < PersonForm/> */}
 
           {/* <Button1 /> */}
                 {/* <Paper1 /> */}
-                <Form1 />
-                <Table1 />
+                {/* <Form1 /> */}
+                {/* <Table1 /> */}
                 <TextField1 />
                 <Card1 />
           
