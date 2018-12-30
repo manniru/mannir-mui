@@ -4,10 +4,10 @@ import { withStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
-import UserForm from '../demos/UserForm'
-import Form1 from '../demos/Form1'
-import UserList from '../components/UserList'
-import ControlledExpansionPanels from '../demos/ControlledExpansionPanels'
+import UserForm from '../../demos/UserForm'
+import Form1 from '../../demos/Form1'
+import UserList from '../UserList'
+import ControlledExpansionPanels from '../../demos/ControlledExpansionPanels'
 
 import faker from 'faker';
 
@@ -34,9 +34,6 @@ const p4 = {
 };
 
 const styles = theme => ({
-  root: {
-    flexGrow: 1
-  },
   paper: {
     padding: theme.spacing.unit * 2,
     textAlign: "center",
@@ -49,20 +46,23 @@ const InfoBox = props => {
     <div>
       <Paper
         style={{
-          padding: 10,
+        //   padding: 10,
+        paddingBottom: 15,
+        // paddingLeft: 10,
           margin: 5,
           width: 300,
           height: 120,
-          backgroundColor: props.color
+          backgroundColor: props.color,
+          textAlign: 'center'
         }}
         elevation={3}
       >
         <Typography variant="h6" style={{ color: "white" }}>
-          Infomation Box 1
+          {props.title}
         </Typography>
 
         <Typography variant="h2" component="h2" style={{ color: "white" }}>
-          { props.title }
+          { props.number }
         </Typography>
 
         <Typography component="p" style={{ color: "white" }}>
@@ -73,16 +73,15 @@ const InfoBox = props => {
   );
 };
 
-function Grid2(props) {
+function Dashboard(props) {
   const { classes } = props;
-
   return (
-    <div className={classes.root}>
+    <div className={{flexGrow: 1}}>
       <Grid container spacing={24}>
-        <Grid item xs={6} sm={3}><InfoBox color="blue" title={faker.random.number({min:10000, max:99999})} /></Grid>
-        <Grid item xs={6} sm={3}><InfoBox color="green" title={faker.random.number({min:10000, max:99999})} /></Grid>
-        <Grid item xs={6} sm={3}><InfoBox color="red" title={faker.random.number({min:10000, max:99999})} /></Grid>
-        <Grid item xs={6} sm={3}><InfoBox color="purple" title={faker.random.number({min:10000, max:99999})} /></Grid>
+        <Grid item xs={6} sm={3}><InfoBox color="blue" number={faker.random.number({min:10000, max:99999})} title="Information Box 1" /></Grid>
+        <Grid item xs={6} sm={3}><InfoBox color="green" number={faker.random.number({min:10000, max:99999})} title="Information Box 2" /></Grid>
+        <Grid item xs={6} sm={3}><InfoBox color="red" number={faker.random.number({min:10000, max:99999})} title="Information Box 3" /></Grid>
+        <Grid item xs={6} sm={3}><InfoBox color="purple" number={faker.random.number({min:10000, max:99999})} title="Information Box 4" /></Grid>
         
        
 
@@ -111,8 +110,8 @@ function Grid2(props) {
   );
 }
 
-Grid2.propTypes = {
+Dashboard.propTypes = {
   classes: PropTypes.object.isRequired
 };
 
-export default withStyles(styles)(Grid2);
+export default withStyles(styles)(Dashboard);

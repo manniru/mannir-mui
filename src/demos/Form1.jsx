@@ -3,8 +3,8 @@ import ReactDOM from "react-dom";
 import Button from "@material-ui/core/Button";
 import MenuItem from "@material-ui/core/MenuItem";
 import TextField from "@material-ui/core/TextField";
-import Paper from '@material-ui/core/Paper';
-import Typography from '@material-ui/core/Typography';
+import Paper from "@material-ui/core/Paper";
+import Typography from "@material-ui/core/Typography";
 import { withStyles } from "@material-ui/core/styles";
 
 class Form1 extends React.Component {
@@ -63,46 +63,101 @@ class Form1 extends React.Component {
   render() {
     return (
       <div>
-          <Paper style={{margin: 10, padding: 10}} elevation={3}>
+        <Paper style={{ margin: 10, padding: 20 }} elevation={3}>
           <Typography variant="h5" component="h3">
-          User Form
-        </Typography>
+            User Form
+          </Typography>
           <TextField
-          label="Firstname"
-          name="name"
-          fullWidth
-          value={this.state.profile.name}
-          onChange={this.handle_value}
-        />
-        <TextField
-          label="Surname"
-          name="surname"
-          fullWidth
-          value={this.state.profile.surname}
-          onChange={this.handle_value}
-        />
-        <TextField
-          label="Age"
-          name="age"
-          fullWidth
-          value={this.state.profile.age}
-          onChange={this.handle_value}
-        />
+            label="Firstname"
+            name="name"
+            fullWidth
+            value={this.state.profile.name}
+            onChange={this.handle_value}
+          />
+          <TextField
+            label="Surname"
+            name="surname"
+            fullWidth
+            value={this.state.profile.surname}
+            onChange={this.handle_value}
+          />
+          <TextField
+            label="Age"
+            name="age"
+            fullWidth
+            value={this.state.profile.age}
+            onChange={this.handle_value}
+          />
 
-        <br />
-        <br />
-        <Button
-          variant="raised"
-          mini
-          fullWidth
-          onClick={this.handle_send}
-        //   disabled={this.state.disabled}
-          color="primary"
-        >
-          Submit
-        </Button>
-          </Paper>
-        
+          <TextField
+            label="Address"
+            name="address"
+            fullWidth
+            value={this.state.profile.address}
+            onChange={this.handle_value}
+          />
+
+          <TextField
+            label="Phone"
+            name="phone"
+            fullWidth
+            value={this.state.profile.phone}
+            onChange={this.handle_value}
+          />
+
+<TextField
+            label="Phone"
+            name="phone"
+            fullWidth
+            value={this.state.profile.phone}
+            onChange={this.handle_value}
+          />
+
+
+<TextField
+            label="Phone"
+            name="phone"
+            fullWidth
+            value={this.state.profile.phone}
+            onChange={this.handle_value}
+          />
+
+
+          <br />
+          <br />
+
+          <Button
+            variant="raised"
+            mini
+            onClick={this.handle_send}
+            //   disabled={this.state.disabled}
+            style={{ margin: 5 }}
+          >
+            Submit
+          </Button>
+
+          <Button
+            variant="raised"
+            mini
+            onClick={this.handle_send}
+            //   disabled={this.state.disabled}
+            color="primary"
+            style={{ margin: 5 }}
+          >
+            Submit
+          </Button>
+
+          <Button
+            variant="raised"
+            mini
+            onClick={this.handle_send}
+            //   disabled={this.state.disabled}
+            color="secondary"
+            style={{ margin: 5 }}
+          >
+            Submit
+          </Button>
+        </Paper>
       </div>
     );
   }

@@ -10,10 +10,10 @@ import Button from "@material-ui/core/Button";
 function UserForm() {
   return (
     <div>
-    <Paper style={{margin: 5, padding: 10}} elevation={3}>
+    <Paper style={{margin: 5, padding: 20}} elevation={3}>
     <React.Fragment>
       <Typography variant="h6" gutterBottom>
-        Guest Form
+        User Form
       </Typography>
       <Grid container spacing={24}>
         <Grid item xs={12} sm={6}>
