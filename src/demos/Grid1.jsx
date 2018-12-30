@@ -15,23 +15,31 @@ const p1 = {
   padding: 10,
   margin: 5,
   width: 300,
-  height: 150,
-  backgroundColor: "#9933CC"
+  height: 120,
+  backgroundColor: "red" 
 };
 const p2 = {
   padding: 10,
   margin: 5,
   width: 300,
-  height: 150,
-  backgroundColor: "#0d47a1"
+  height: 120,
+  backgroundColor: "purple" //0d47a1
 };
 const p3 = {
   padding: 10,
   margin: 5,
   width: 300,
-  height: 150,
-  backgroundColor: "#c51162"
+  height: 120,
+  backgroundColor: "blue"
 };
+
+const p4 = {
+    padding: 10,
+    margin: 5,
+    width: 300,
+    height: 120,
+    backgroundColor: "green"
+  };
 
 const Paper1 = () => (
   <Paper style={p1} elevation={3}>
@@ -68,7 +76,6 @@ class Grid1 extends React.Component {
               <Paper style={p1} elevation={3}>
                 <Typography
                   variant="h6"
-                  component="h4"
                   style={{ color: "white" }}
                 >
                   Infomation Box 1
@@ -82,7 +89,7 @@ class Grid1 extends React.Component {
                   88888
                 </Typography>
 
-                <Typography component="p">
+                <Typography component="p" style={{ color: "white" }}>
                   Number of Registered Users
                 </Typography>
               </Paper>
@@ -90,6 +97,49 @@ class Grid1 extends React.Component {
 
             <Grid item>
               <Paper style={p2} elevation={3}>
+                <Typography
+                  variant="h6"
+                  style={{ color: "white" }}
+                >
+                  Information Box 2
+                </Typography>
+                <Typography
+                  variant="h2"
+                  component="h2"
+                  style={{ color: "white" }}
+                >
+                  36782
+                </Typography>
+                <Typography component="p" style={{ color: "white" }}>
+                  Number of Registered Users
+                </Typography>
+              </Paper>
+            </Grid>
+
+            <Grid item>
+              <Paper style={p3} elevation={3}>
+                <Typography
+                  variant="h6"
+                  component="h4"
+                  style={{ color: "white" }}
+                >
+                  Information Box 3
+                </Typography>
+                <Typography
+                  variant="h2"
+                  component="h2"
+                  style={{ color: "white" }}
+                >
+                  36782
+                </Typography>
+                <Typography component="p" style={{ color: "white" }}>
+                  Number of Registered Users
+                </Typography>
+              </Paper>
+            </Grid>
+
+            <Grid item>
+              <Paper style={p4} elevation={3}>
                 <Typography
                   variant="h6"
                   component="h4"
@@ -110,49 +160,9 @@ class Grid1 extends React.Component {
               </Paper>
             </Grid>
 
-            <Grid>
-              <Paper style={p3} elevation={3}>
-                <Typography
-                  variant="h6"
-                  component="h4"
-                  style={{ color: "white" }}
-                >
-                  Information Box 3
-                </Typography>
-                <Typography
-                  variant="h2"
-                  component="h2"
-                  style={{ color: "white" }}
-                >
-                  99999
-                </Typography>
-                <Typography component="p" style={{ color: "white" }}>
-                  Number of Registered Users
-                </Typography>
-              </Paper>
-            </Grid>
+            
 
-            <Grid>
-              <Paper style={p3} elevation={3}>
-                <Typography
-                  variant="h6"
-                  component="h4"
-                  style={{ color: "white" }}
-                >
-                  Information Box 4
-                </Typography>
-                <Typography
-                  variant="h2"
-                  component="h2"
-                  style={{ color: "white" }}
-                >
-                  99999
-                </Typography>
-                <Typography component="p" style={{ color: "white" }}>
-                  Number of Registered Users
-                </Typography>
-              </Paper>
-            </Grid>
+            
 
             {/* ))} */}
           </Grid>

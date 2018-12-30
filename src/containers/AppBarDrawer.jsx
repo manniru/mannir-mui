@@ -394,11 +394,11 @@ class AppBarDrawer extends React.Component {
           <Grid1 />
           {/* <Row1 /> */}
 
-          <InfoBox />
+          {/* <InfoBox /> */}
           < PersonForm/>
 
-          <Button1 />
-                <Paper1 />
+          {/* <Button1 /> */}
+                {/* <Paper1 /> */}
                 <Form1 />
                 <Table1 />
                 <TextField1 />
