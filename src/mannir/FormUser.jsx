@@ -91,6 +91,11 @@ class FormUser extends Component {
         console.log(person);
         break;
 
+    case 'reset':
+        var pnos = this.props.persons.length;
+        console.log('Reset', pnos);
+        break;
+
       default:
         break;
     }
@@ -158,6 +163,32 @@ class FormUser extends Component {
           formErrorMessage: 'Something went wrong. ' + err
         });
       }
+    });
+  }
+
+  handleDelete(e) {
+
+    // let params = e.target.getAttribute('data-userID');
+    // var params = this.props.persons.length; // 5c29d2667575672351722b52
+    var params = this.props.persons[this.props.persons.length - 1]._id
+    // console.log(params)
+    // console.log(`${this.props.server}/api/persons/${params}`)
+    // var params = `http://192.168.43.226:3000/api/persons/5c29d3f17575672351722b53`
+
+    
+    axios({
+      method: 'delete',
+      responseType: 'json',
+      url: `${this.props.server}/api/persons/${params}`,
+    })
+    .then((response) => {
+    //   this.handleClose();
+      this.props.onPersonDeleted(response.data.result);
+      this.props.socket.emit('delete', response.data.result);
+    })
+    .catch((err) => {
+      console.log('err: ', err)
+      throw err;
     });
   }
 
@@ -241,6 +272,13 @@ class FormUser extends Component {
           >
             Reset
           </Button>
+
+          <Button
+            variant="raised"
+            onClick={e => this.handleDelete(e)}
+            color="secondary"
+            style={b1} >Delete</Button>
+
         </Paper>
       </div>
     );

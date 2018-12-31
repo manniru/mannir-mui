@@ -197,10 +197,10 @@ class AppBarDrawer extends React.Component {
     online: 0
   }
 
-  this.fetchUsers = this.fetchUsers.bind(this);
-  this.handleUserAdded = this.handleUserAdded.bind(this);
-  this.handleUserUpdated = this.handleUserUpdated.bind(this);
-  this.handleUserDeleted = this.handleUserDeleted.bind(this);
+  // this.fetchUsers = this.fetchUsers.bind(this);
+  // this.handleUserAdded = this.handleUserAdded.bind(this);
+  // this.handleUserUpdated = this.handleUserUpdated.bind(this);
+  // this.handleUserDeleted = this.handleUserDeleted.bind(this);
 }
 
   handleProfileMenuOpen = event => {
@@ -302,6 +302,12 @@ class AppBarDrawer extends React.Component {
     let users = this.state.users.slice();
     users = users.filter(u => { return u._id !== user._id; });
     this.setState({ users: users });
+  }
+
+  handlePersonDeleted = (person) => {
+    let persons = this.state.persons.slice();
+    persons = persons.filter(u => { return u._id !== person._id; });
+    this.setState({ persons });
   }
 
   handlePersonAdded = (person) => {
@@ -503,13 +509,15 @@ class AppBarDrawer extends React.Component {
             onUserUpdated={this.onUserUpdated}
 
             onUserDeleted={this.handleUserDeleted}
+            onPersonDeleted={this.handlePersonDeleted}
+            
             users={this.state.users}
             persons={this.state.persons}
           />
           {/* <Row1 /> */}
 
           {/* <InfoBox /> */}
-          <FormUser 
+          {/* <FormUser 
             server={this.server}
             socket={this.socket}
             onUserAdded={this.handleUserAdded}
@@ -520,7 +528,7 @@ class AppBarDrawer extends React.Component {
           // server={this.props.server}
           // socket={this.props.socket}
           
-          />
+          /> */}
 
           {/* <Button1 /> */}
                 {/* <Paper1 /> */}

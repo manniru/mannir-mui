@@ -91,12 +91,12 @@ class Dashboard extends React.Component {
 // function Dashboard(props) {
   const { classes , online, noun, verb} = this.props;
 
-  // console.log(this.props.users)
+  console.log(this.props.persons)
   return (
     <div className={{flexGrow: 1}}>
       <Grid container spacing={24}>
         <Grid item xs={6} sm={3}><InfoBox color="blue" number={faker.random.number({min:10000, max:99999})} title={`${online} ${noun} ${verb} online.`} /></Grid>
-        <Grid item xs={6} sm={3}><InfoBox color="green" number={faker.random.number({min:10000, max:99999})} title="Information Box 2" /></Grid>
+        <Grid item xs={6} sm={3}><InfoBox color="green" number={this.props.persons.length} title="Number of Records" /></Grid>
         <Grid item xs={6} sm={3}><InfoBox color="red" number={faker.random.number({min:10000, max:99999})} title="Information Box 3" /></Grid>
         <Grid item xs={6} sm={3}><InfoBox color="purple" number={faker.random.number({min:10000, max:99999})} title="Information Box 4" /></Grid>
         
@@ -117,7 +117,10 @@ class Dashboard extends React.Component {
           onUserAdded={this.props.handleUserAdded}
           onPersonAdded={this.props.onPersonAdded}
           onUserUpdated={this.props.onUserUpdated}
+          onPersonDeleted={this.props.onPersonDeleted}
+          
           userID={this.props.userID}
+          persons={this.props.persons}
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -144,7 +147,7 @@ class Dashboard extends React.Component {
           <ControlledExpansionPanels />
         </Grid>
         <Grid item xs={12} sm={6}>
-          <PersonForm />
+          {'<PersonForm />'}
         </Grid>
 
 
