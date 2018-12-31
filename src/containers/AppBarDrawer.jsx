@@ -32,12 +32,13 @@ import Button1 from '../demos/Button1'
 import Paper1 from '../demos/Paper1'
 import Table1 from '../demos/Table1'
 import Card1 from '../demos/Card1'
-import Form1 from '../demos/Form1'
+import Form1 from '../demos/PersonForm'
 import InfoBox from '../components/dashboard/InfoBox'
 import Row1 from '../demos/Row1'
-// import PersonForm from '../demos/UserForm'
+import PersonForm from '../demos/UserForm'
 import Grid1 from '../demos/Grid1'
 import Dashboard from '../components/dashboard/Dashboard'
+import FormUser from '../mannir/FormUser'
 
 //mannir
 import axios from 'axios';
@@ -192,6 +193,7 @@ class AppBarDrawer extends React.Component {
     mobileMoreAnchorEl: null,
 
     users: [],
+    persons: [],
     online: 0
   }
 
@@ -245,21 +247,31 @@ class AppBarDrawer extends React.Component {
 
   componentDidMount = () => {
     this.fetchUsers();
+    this.fetchPersons();
     
     this.socket.on('visitor enters', data => this.setState({ online: data }));
     this.socket.on('visitor exits', data => this.setState({ online: data }));
     this.socket.on('add', data => this.handleUserAdded(data));
+    this.socket.on('add', data => this.handlePersonAdded(data));
     this.socket.on('update', data => this.handleUserUpdated(data));
     this.socket.on('delete', data => this.handleUserDeleted(data));
     
   }
 
   fetchUsers = () => {
-    console.log(this.server)
     axios.get(`${this.server}/api/users/`)
     .then((response) => {
-      console.log(response.data )
       this.setState({ users: response.data });
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+  }
+
+  fetchPersons = () => {
+    axios.get(`${this.server}/api/persons/`)
+    .then((response) => {
+      this.setState({ persons: response.data });
     })
     .catch((err) => {
       console.log(err);
@@ -290,6 +302,13 @@ class AppBarDrawer extends React.Component {
     let users = this.state.users.slice();
     users = users.filter(u => { return u._id !== user._id; });
     this.setState({ users: users });
+  }
+
+  handlePersonAdded = (person) => {
+    console.log('handlePersonAdded')
+    let persons = this.state.persons.slice();
+    persons.push(person);
+    this.setState({ persons });
   }
 
   render() {
@@ -473,11 +492,35 @@ class AppBarDrawer extends React.Component {
 
 
           {/* <Grid1 /> */}
-          <Dashboard />
+          <Dashboard 
+            online={online} noun={noun} verb={verb} 
+            server={this.server}
+            socket={this.socket}
+            userID={this.userID}
+            onUserAdded={this.handleUserAdded}
+            onPersonAdded={this.handlePersonAdded}
+
+            onUserUpdated={this.onUserUpdated}
+
+            onUserDeleted={this.handleUserDeleted}
+            users={this.state.users}
+            persons={this.state.persons}
+          />
           {/* <Row1 /> */}
 
           {/* <InfoBox /> */}
-          {/* < PersonForm/> */}
+          <FormUser 
+            server={this.server}
+            socket={this.socket}
+            onUserAdded={this.handleUserAdded}
+            onUserUpdated={this.onUserUpdated}
+            userID={this.userID}
+            onPersonAdded={this.handlePersonAdded}
+          // onUserUpdated={this.props.onUserUpdated}
+          // server={this.props.server}
+          // socket={this.props.socket}
+          
+          />
 
           {/* <Button1 /> */}
                 {/* <Paper1 /> */}

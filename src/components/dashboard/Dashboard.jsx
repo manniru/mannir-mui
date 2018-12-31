@@ -5,11 +5,13 @@ import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import UserForm from '../../demos/UserForm'
-import Form1 from '../../demos/Form1'
+import PersonForm from '../../demos/PersonForm'
 import UserList from '../UserList'
 import ControlledExpansionPanels from '../../demos/ControlledExpansionPanels'
 
-import faker from 'faker';
+import faker from 'faker'
+import FormUser from "../../mannir/FormUser"
+import TableUser from '../../demos/TableUser'
 
 const p2 = {
   padding: 10,
@@ -73,12 +75,27 @@ const InfoBox = props => {
   );
 };
 
-function Dashboard(props) {
-  const { classes } = props;
+class Dashboard extends React.Component {
+
+  constructor(props) {
+    super(props);
+    
+    this.state = {
+      name: '',
+      
+    }
+
+  }
+
+  render() {
+// function Dashboard(props) {
+  const { classes , online, noun, verb} = this.props;
+
+  // console.log(this.props.users)
   return (
     <div className={{flexGrow: 1}}>
       <Grid container spacing={24}>
-        <Grid item xs={6} sm={3}><InfoBox color="blue" number={faker.random.number({min:10000, max:99999})} title="Information Box 1" /></Grid>
+        <Grid item xs={6} sm={3}><InfoBox color="blue" number={faker.random.number({min:10000, max:99999})} title={`${online} ${noun} ${verb} online.`} /></Grid>
         <Grid item xs={6} sm={3}><InfoBox color="green" number={faker.random.number({min:10000, max:99999})} title="Information Box 2" /></Grid>
         <Grid item xs={6} sm={3}><InfoBox color="red" number={faker.random.number({min:10000, max:99999})} title="Information Box 3" /></Grid>
         <Grid item xs={6} sm={3}><InfoBox color="purple" number={faker.random.number({min:10000, max:99999})} title="Information Box 4" /></Grid>
@@ -86,14 +103,40 @@ function Dashboard(props) {
        
 
         <Grid item xs={12} sm={6}>
-          <UserForm />
+          {/* <PersonForm 
+          // userID={this.props.userID}
+          onUserAdded={this.props.onUserAdded}
+          onUserUpdated={this.props.onUserUpdated}
+          server={this.props.server}
+          socket={this.props.socket}
+          /> */}
+          {'FormUser'}
+          <FormUser 
+          server={this.props.server}
+          socket={this.props.socket}
+          onUserAdded={this.props.handleUserAdded}
+          onPersonAdded={this.props.onPersonAdded}
+          onUserUpdated={this.props.onUserUpdated}
+          userID={this.props.userID}
+          />
         </Grid>
         <Grid item xs={12} sm={6}>
-          <Form1 />
+          {'<UserForm />'}
         </Grid>
 
         <Grid item xs={12}>
-          <UserList />
+          <TableUser 
+          onUserUpdated={this.props.handleUserUpdated}
+          onUserDeleted={this.props.handleUserDeleted}
+          users={this.props.users}
+          persons={this.props.persons}
+          server={this.props.server}
+          socket={this.props.socket}
+           />
+        </Grid>
+
+        <Grid item xs={12}>
+          {'<UserList />'}
         </Grid>
 
 
@@ -101,7 +144,7 @@ function Dashboard(props) {
           <ControlledExpansionPanels />
         </Grid>
         <Grid item xs={12} sm={6}>
-          <Form1 />
+          <PersonForm />
         </Grid>
 
 
@@ -109,6 +152,8 @@ function Dashboard(props) {
     </div>
   );
 }
+}
+
 
 Dashboard.propTypes = {
   classes: PropTypes.object.isRequired
