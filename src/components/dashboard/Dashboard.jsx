@@ -5,13 +5,13 @@ import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import UserForm from '../../demos/UserForm'
-import PersonForm from '../../demos/PersonForm'
+// import PersonForm from '../../demos/PersonForm'
 import UserList from '../UserList'
 import ControlledExpansionPanels from '../../demos/ControlledExpansionPanels'
 
 import faker from 'faker'
-import FormUser from "../../mannir/FormUser"
-import TableUser from '../../demos/TableUser'
+import PersonForm from "../../mannir/mern/PersonForm"
+import PersonTable from "../../mannir/mern/PersonTable"
 
 const p2 = {
   padding: 10,
@@ -91,7 +91,7 @@ class Dashboard extends React.Component {
 // function Dashboard(props) {
   const { classes , online, noun, verb} = this.props;
 
-  console.log(this.props.persons)
+  // console.log(this.props.persons)
   return (
     <div className={{flexGrow: 1}}>
       <Grid container spacing={24}>
@@ -111,7 +111,7 @@ class Dashboard extends React.Component {
           socket={this.props.socket}
           /> */}
           {'FormUser'}
-          <FormUser 
+          <PersonForm 
           server={this.props.server}
           socket={this.props.socket}
           onUserAdded={this.props.handleUserAdded}
@@ -121,6 +121,7 @@ class Dashboard extends React.Component {
           
           userID={this.props.userID}
           persons={this.props.persons}
+          person={this.props.person}
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -128,7 +129,7 @@ class Dashboard extends React.Component {
         </Grid>
 
         <Grid item xs={12}>
-          <TableUser 
+          <PersonTable 
           onUserUpdated={this.props.handleUserUpdated}
           onUserDeleted={this.props.handleUserDeleted}
           onPersonDeleted={this.props.onPersonDeleted}
@@ -136,6 +137,7 @@ class Dashboard extends React.Component {
           persons={this.props.persons}
           server={this.props.server}
           socket={this.props.socket}
+          hanleSelectedId={this.props.hanleSelectedId}
            />
         </Grid>
 

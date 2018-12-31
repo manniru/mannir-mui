@@ -18,6 +18,8 @@ import Tooltip from '@material-ui/core/Tooltip';
 import DeleteIcon from '@material-ui/icons/Delete';
 import FilterListIcon from '@material-ui/icons/FilterList';
 import { lighten } from '@material-ui/core/styles/colorManipulator';
+import Button from "@material-ui/core/Button";
+import axios from 'axios';
 
 let counter = 0;
 function createData(name, calories, fat, carbs, protein) {
@@ -55,6 +57,7 @@ const rows = [
   { id: 'phone', disablePadding: false, label: 'Phone' },
   { id: 'email', disablePadding: false, label: 'Email' },
   { id: 'date', disablePadding: false, label: 'Date' },
+  { id: 'actions', label: 'Actions' },
 ];
 
 class EnhancedTableHead extends React.Component {
@@ -155,7 +158,7 @@ let EnhancedTableToolbar = props => {
           </Typography>
         ) : (
           <Typography variant="h6" id="tableTitle">
-            User List
+            Persons List
           </Typography>
         )}
       </div>
@@ -199,7 +202,7 @@ const styles = theme => ({
   },
 });
 
-class TableUser extends React.Component {
+class PersonTable extends React.Component {
   state = {
     order: 'asc',
     orderBy: 'calories',
@@ -207,6 +210,7 @@ class TableUser extends React.Component {
     data: [],
     page: 0,
     rowsPerPage: 5,
+    selectdId: '',
   };
 
   handleRequestSort = (event, property) => {
@@ -263,6 +267,31 @@ class TableUser extends React.Component {
       this.setState({date: []})
   }
 
+  handleEdit = (e, id) => {
+    this.setState({ selectdId: id })
+    console.log('handleEdit', id)
+    this.props.hanleSelectedId(id);
+  }
+
+  handleDel = (e, id) => {
+    axios({
+      method: 'delete',
+      responseType: 'json',
+      url: `${this.props.server}/api/persons/${id}`,
+    })
+    .then((response) => {
+    //   this.handleClose();
+      this.props.onPersonDeleted(response.data.result);
+      this.props.socket.emit('delete', response.data.result);
+      console.log('Record Deleted! ', id)
+    })
+    .catch((err) => {
+      console.log('err: ', err)
+      throw err;
+    });
+
+  }
+
   render() {
     const { classes } = this.props;
     const { order, orderBy, selected, rowsPerPage, page } = this.state;
@@ -307,6 +336,20 @@ class TableUser extends React.Component {
                       <TableCell>{n.phone}</TableCell>
                       <TableCell>{n.email}</TableCell>
                       <TableCell>{+ new Date()}</TableCell>
+                      <TableCell>
+
+                        <Button 
+                          variant="contained"
+                          color="primary" 
+                          onClick={ e => this.handleEdit(e, n._id) }
+                        >Edit</Button> - 
+                        <Button 
+                          variant="contained" 
+                          color="secondary"
+                          onClick={ e => this.handleDel(e, n._id) }
+
+                          >Del</Button>
+                      </TableCell>
                     </TableRow>
                   );
                 })}
@@ -338,8 +381,8 @@ class TableUser extends React.Component {
   }
 }
 
-TableUser.propTypes = {
+PersonTable.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(TableUser);
+export default withStyles(styles)(PersonTable);

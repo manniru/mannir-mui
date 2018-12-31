@@ -16,7 +16,7 @@ const genderOptions = [
   { key: 'o', text: 'Do Not Disclose', value: 'o' }
 ]
 
-class FormUser extends Component {
+export default class PersonForm extends Component {
 
   constructor(props) {
     super(props);
@@ -44,6 +44,8 @@ class FormUser extends Component {
   }
 
   componentWillMount() {
+        console.log('componentWillMount', this.props.person)
+
     // Fill in the form with the appropriate data if user id is provided
     if (this.props.userID) {
       axios.get(`${this.props.server}/api/users/${this.props.userID}`)
@@ -60,6 +62,11 @@ class FormUser extends Component {
       });
     }
   }
+
+  // componentDidMount = () => {
+  //   console.log('componentDidMount', this.props.person)
+
+  // }
 
   handleInputChange(e) {
     const target = e.target;
@@ -197,6 +204,11 @@ class FormUser extends Component {
     const formSuccessMessage = this.state.formSuccessMessage;
     const formErrorMessage = this.state.formErrorMessage;
 
+    // if (this.props.person) {
+    //   console.log(this.props.person)
+    //   // this.setState({person: this.props.person})
+    // }
+
     return (
         <div
         style={{
@@ -205,7 +217,7 @@ class FormUser extends Component {
         }}
         >
         <Paper style={{ margin: 10, padding: 20 }} elevation={3}>
-          <Typography variant="h5" component="h3">
+          <Typography variant="h6" component="h3">
             Person Form
           </Typography>
 
@@ -284,5 +296,3 @@ class FormUser extends Component {
     );
   }
 }
-
-export default FormUser;

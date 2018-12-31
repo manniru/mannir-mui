@@ -35,10 +35,10 @@ import Card1 from '../demos/Card1'
 import Form1 from '../demos/PersonForm'
 import InfoBox from '../components/dashboard/InfoBox'
 import Row1 from '../demos/Row1'
-import PersonForm from '../demos/UserForm'
+// import PersonForm from '../demos/UserForm'
 import Grid1 from '../demos/Grid1'
 import Dashboard from '../components/dashboard/Dashboard'
-import FormUser from '../mannir/FormUser'
+// import FormUser from '../mannir/FormUser'
 
 //mannir
 import axios from 'axios';
@@ -317,6 +317,13 @@ class AppBarDrawer extends React.Component {
     this.setState({ persons });
   }
 
+  hanleSelectedId = (id) => {
+    var person = this.state.persons.filter(p => p._id == id)[0]
+    if (person) {
+      this.setState({ person })
+    }
+  }
+
   render() {
     const { classes, theme } = this.props;
     const { open } = this.state;
@@ -507,12 +514,13 @@ class AppBarDrawer extends React.Component {
             onPersonAdded={this.handlePersonAdded}
 
             onUserUpdated={this.onUserUpdated}
-
+            hanleSelectedId={this.hanleSelectedId}
             onUserDeleted={this.handleUserDeleted}
             onPersonDeleted={this.handlePersonDeleted}
 
             users={this.state.users}
             persons={this.state.persons}
+            person={this.state.person}
           />
           {/* <Row1 /> */}
 
