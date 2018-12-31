@@ -184,7 +184,7 @@ class AppBarDrawer extends React.Component {
  constructor() {
   super();
 
-  this.server = process.env.REACT_APP_API_URL || '';
+  this.server = process.env.REACT_APP_API_URL || 'http://192.168.43.226:1313';
   this.socket = io.connect(this.server);
 
   this.state = {
@@ -248,14 +248,14 @@ class AppBarDrawer extends React.Component {
   componentDidMount = () => {
     this.fetchUsers();
     this.fetchPersons();
-    
+
     this.socket.on('visitor enters', data => this.setState({ online: data }));
     this.socket.on('visitor exits', data => this.setState({ online: data }));
     this.socket.on('add', data => this.handleUserAdded(data));
     this.socket.on('add', data => this.handlePersonAdded(data));
     this.socket.on('update', data => this.handleUserUpdated(data));
     this.socket.on('delete', data => this.handleUserDeleted(data));
-    
+
   }
 
   fetchUsers = () => {
@@ -498,8 +498,8 @@ class AppBarDrawer extends React.Component {
 
 
           {/* <Grid1 /> */}
-          <Dashboard 
-            online={online} noun={noun} verb={verb} 
+          <Dashboard
+            online={online} noun={noun} verb={verb}
             server={this.server}
             socket={this.socket}
             userID={this.userID}
@@ -510,14 +510,14 @@ class AppBarDrawer extends React.Component {
 
             onUserDeleted={this.handleUserDeleted}
             onPersonDeleted={this.handlePersonDeleted}
-            
+
             users={this.state.users}
             persons={this.state.persons}
           />
           {/* <Row1 /> */}
 
           {/* <InfoBox /> */}
-          {/* <FormUser 
+          {/* <FormUser
             server={this.server}
             socket={this.socket}
             onUserAdded={this.handleUserAdded}
@@ -527,7 +527,7 @@ class AppBarDrawer extends React.Component {
           // onUserUpdated={this.props.onUserUpdated}
           // server={this.props.server}
           // socket={this.props.socket}
-          
+
           /> */}
 
           {/* <Button1 /> */}
@@ -535,7 +535,7 @@ class AppBarDrawer extends React.Component {
                 {/* <Form1 /> */}
                 {/* <Table1 /> */}
                 <Card1 />
-          
+
         </main>
       </div>
     );

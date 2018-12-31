@@ -131,6 +131,7 @@ class Dashboard extends React.Component {
           <TableUser 
           onUserUpdated={this.props.handleUserUpdated}
           onUserDeleted={this.props.handleUserDeleted}
+          onPersonDeleted={this.props.onPersonDeleted}
           users={this.props.users}
           persons={this.props.persons}
           server={this.props.server}
